@@ -3,13 +3,21 @@ server:
 
 spring:
   kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      client-id: producer-springboot
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: all
+      properties.enable.idempotence: true
+      compression-type: snappy
     consumer:
       bootstrap-servers: localhost:9092
       group-id: app1
+      client-id: app1-springboot
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-    producer:
-      bootstrap-servers: localhost:9092
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+
+
