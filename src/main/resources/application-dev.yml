@@ -1,0 +1,6 @@
+spring:
+  kafka:
+    producer:
+      bootstrap-servers: vm1:32923,vm1:32925,vm1:32927
+    consumer:
+      bootstrap-servers: vm1:32923,vm1:32925,vm1:32927

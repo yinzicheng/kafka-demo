@@ -7,12 +7,12 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Producer {
-    public static Logger logger = LoggerFactory.getLogger(Producer.class);
+public class DemoProducer {
+    public static Logger logger = LoggerFactory.getLogger(DemoProducer.class);
     public static final String MY_TOPIC = "my-topic";
     private final KafkaTemplate<String, Object> template;
 
-    public Producer(KafkaTemplate<String, Object> template) {
+    public DemoProducer(KafkaTemplate<String, Object> template) {
         this.template = template;
     }
 

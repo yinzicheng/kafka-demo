@@ -3,7 +3,7 @@ package com.yzc.kafkademo.web.KafkaController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yzc.kafkademo.domain.KeyValue;
-import com.yzc.kafkademo.kafka.Producer;
+import com.yzc.kafkademo.kafka.DemoProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/kafka")
 public class KafkaController {
 
-    private final Producer producer;
+    private final DemoProducer producer;
 
     @Autowired
-    KafkaController(Producer producer) {
+    KafkaController(DemoProducer producer) {
         this.producer = producer;
     }
 

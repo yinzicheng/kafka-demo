@@ -8,9 +8,19 @@ spring:
       client-id: producer-springboot
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      # idempotent producer
+      # retries: 2147483647
+      # properties.max.in.flight.requests.per.connection: 5
       acks: all
       properties.enable.idempotence: true
+      # producer message compression
       compression-type: snappy
+      # producer batch - improve throughput
+      properties.linger.ms: 20
+      properties.batch.size: 32768
+      # producer buffer - in case producer is faster than broker can handle message
+      buffer-memory: 33554432
+      properties.max.block.ms: 60000
     consumer:
       bootstrap-servers: localhost:9092
       group-id: app1
@@ -18,6 +28,18 @@ spring:
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      # idempotent consumer - use unique id for each records in consumer app (make consumer app idempotent)
+      # consumer pull settings
+      max-poll-records: 500
+      fetch-min-size: 1024
+      fetch-max-wait: 500
+      properties.max.partition.fetch.bytes: 1048576
+      properties.fetch.max.bytes: 52428800
+      enable-auto-commit: false
+      properties.session.timeout.ms: 10000
+      properties.heartbeat.interval.ms: 3000
+      # need to increase this if processing message takes long
+      properties.max.poll.interval.ms: 300000
 
 
 
